@@ -20,7 +20,7 @@ void buildST(ll i, ll s, ll e, ll arr[], ll segtree[]){
 		return;
 	}
 	ll mid = s + (e-s)/2; // (s+e)/2
-	buildST(2*i,s,mid,arr,setree);
+	buildST(2*i,s,mid,arr,segtree);
 	buildST(2*i+1,mid+1,e,arr,segtree);
 	segtree[i] = segtree[2*i] + segtree[2*i+1];
 }
@@ -46,12 +46,12 @@ void updateST(ll i, ll s, ll e, ll pos, ll val, ll segtree[], ll arr[]){
 	segtree[i] = segtree[2*i] + segtree[2*i+1];
 }
 
-int main{
+int main(){
  	fastio();
 	ios_base::sync_with_stdio(0);
     cin.tie(0);
 
-    ll n;cin>>n;
+    ll n,m;cin>>n>>m;
     ll arr[n];
     for(ll i=0;i<=n-1;i++){
     	cin>>arr[i];
@@ -64,5 +64,16 @@ int main{
     ll segtree[2*t];
 
     buildST(1,0,n-1,arr,segtree);
+
+    while(m--){
+    	ll a,b,c;cin>>a>>b>>c;
+    	if(a==1){
+    		updateST(1,0,n-1,b,c,segtree,arr);
+    	}
+    	else{
+    		ll ans = queryST(1,0,n-1,b,c-1,segtree);
+    		cout<<ans<<endl;
+    	}
+    }
 }
 
