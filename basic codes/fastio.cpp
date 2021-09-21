@@ -7,8 +7,8 @@ using namespace std;
 
 void fastio(){
     #ifndef ONLINE_JUDGE	
-	freopen("E:/coding_cp/input.txt","r",stdin);
-	freopen("E:/coding_cp/output.txt","w",stdout);
+	freopen("D:/coding_cp/input.txt","r",stdin);
+	freopen("D:/coding_cp/output.txt","w",stdout);
     #endif
 }
 
