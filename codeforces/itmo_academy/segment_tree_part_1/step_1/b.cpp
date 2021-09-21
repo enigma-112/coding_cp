@@ -22,15 +22,15 @@ void buildST(ll i, ll s, ll e, ll segtree[], ll arr[]){
 	ll mid = s + (e-s)/2; // (s+e)/2
 	buildST(2*i, s, mid, segtree, arr);
 	buildST(2*i+1, mid+1, e, segtree, arr);
-	segtree[i] = segtree[2*i] + segtree[2*i+1];
+	segtree[i] = min(segtree[2*i], segtree[2*i+1]);
 }
 
 ll queryST(ll i, ll s, ll e, ll qs, ll qe, ll segtree[]){
-	if(qs > e || qe < s){return 0;}
+	if(qs > e || qe < s){return INT_MAX;}
 	if(s >= qs && e <= qe){return segtree[i];}
 
 	ll mid = s + (e-s)/2;
-	return queryST(2*i, s, mid, qs, qe, segtree) + queryST(2*i+1, mid+1, e, qs, qe, segtree);
+	return min(queryST(2*i, s, mid, qs, qe, segtree), queryST(2*i+1, mid+1, e, qs, qe, segtree));
 }
 
 void updateST(ll i, ll s, ll e, ll pos, ll val, ll segtree[], ll arr[]){
@@ -43,7 +43,7 @@ void updateST(ll i, ll s, ll e, ll pos, ll val, ll segtree[], ll arr[]){
 	if(pos <= mid){updateST(2*i, s, mid, pos, val, segtree, arr);}
 	else{updateST(2*i+1, mid+1, e, pos, val, segtree, arr);}
 
-	segtree[i] = segtree[2*i] + segtree[2*i+1];
+	segtree[i] = min(segtree[2*i], segtree[2*i+1]);
 }
 
 int main(){
@@ -67,7 +67,7 @@ int main(){
 
     while(m--){
     	ll a,b,c;cin>>a>>b>>c;
-    	if(a==1){
+    	if(a == 1){
     		updateST(1, 0, n-1, b, c, segtree, arr);
     	}
     	else{
