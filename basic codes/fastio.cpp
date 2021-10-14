@@ -4,6 +4,7 @@ using namespace std;
 #define ll long long int
 #define pb push_back
 #define mp make_pair
+#define endl "\n"
 
 void fastio(){
     #ifndef ONLINE_JUDGE	
