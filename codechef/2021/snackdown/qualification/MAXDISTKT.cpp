@@ -13,6 +13,7 @@ void fastio(){
     #endif
 }
 
+unordered_map<ll,ll> m1;
 int main(){
 	fastio();
 	ios_base::sync_with_stdio(0);
@@ -20,20 +21,32 @@ int main(){
 
     ll t;cin>>t;
     while(t--){
-    	ll arr[5];
-        for(ll i=0;i<=4;i++){
-            cin>>arr[i];
+    	ll n;cin>>n;
+        ll arrB[n];
+        for(ll i=0;i<=n-1;i++){
+            cin>>arrB[i];
         }
-        ll india = 0,england=0;
-        for(ll i=0;i<=4;i++){
-            if(arr[i]==1){india++;}
-            else if(arr[i]==2){england++;}
+        m1.clear();
+        ll arrA[n] = {-1};
+        for(ll i=0;i<=n-1;i++){
+            ll x = arrB[i] -1;
+            for(ll j=x;j>=0; j--){
+                if(m1.find(j)==m1.end()){
+                    arrA[i]=j;
+                    m1.insert({j,1});
+                    break;
+                }
+            }
+            if(arrA[i] == -1){
+                arrA[i] = 1;
+            }
+            
         }
-        if(india > england){cout<<"india"<<endl;}
-        else if(england > india){cout<<"england"<<endl;}
-        else{
-            cout<<"draw"<<endl; 
+
+        for(ll i=0;i<=n-1;i++){
+            cout<<arrA[i]<<" ";
         }
+        cout<<endl;
     }
    
    
