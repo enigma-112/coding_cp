@@ -4,6 +4,8 @@ using namespace std;
 #define ll long long int
 #define pb push_back
 #define mp make_pair
+#define ff first
+#define ss second
 #define endl "\n"
 
 void fastio(){
@@ -13,7 +15,9 @@ void fastio(){
     #endif
 }
 
-unordered_map<ll,ll> m1;
+bool compare(pair<ll,ll> &a, pair<ll,ll> &b){
+    return a.ff < b.ff;
+}
 int main(){
 	fastio();
 	ios_base::sync_with_stdio(0);
@@ -22,25 +26,26 @@ int main(){
     ll t;cin>>t;
     while(t--){
     	ll n;cin>>n;
-        ll arrB[n];
+        pair<ll,ll> arrB[n]; // value, idx
+
         for(ll i=0;i<=n-1;i++){
-            cin>>arrB[i];
+            cin>>arrB[i].ff;
+            arrB[i].ss = i;
         }
-        m1.clear();
-        ll arrA[n] = {-1};
+        sort(arrB,arrB+n,compare);
+       
+        ll arrA[n];
+        ll x = 0;
         for(ll i=0;i<=n-1;i++){
-            ll x = arrB[i] -1;
-            for(ll j=x;j>=0; j--){
-                if(m1.find(j)==m1.end()){
-                    arrA[i]=j;
-                    m1.insert({j,1});
-                    break;
-                }
-            }
-            if(arrA[i] == -1){
-                arrA[i] = 1;
-            }
-            
+           ll val = arrB[i].ff;
+           ll idx = arrB[i].ss;
+           if(x<=val-1){
+             arrA[idx] = val+x;
+             x++;
+           }
+           else{
+            arrA[idx] = 50;
+           } 
         }
 
         for(ll i=0;i<=n-1;i++){
@@ -52,3 +57,4 @@ int main(){
    
 }
 
+}
