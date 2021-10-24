@@ -53,8 +53,4 @@ int main(){
         }
         cout<<endl;
     }
-   
-   
-}
-
 }
