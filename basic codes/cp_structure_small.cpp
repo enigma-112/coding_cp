@@ -4,6 +4,7 @@ using namespace std;
 #define ll long long int
 #define mod             1000000007
 #define inf             1e18
+#define endl 			"\n"
 #define FIO             ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0)
 
 void customio(){
@@ -16,7 +17,7 @@ void customio(){
 int main(){
 	customio();
 	FIO;
-	
+
 
 	return 0;
 }
