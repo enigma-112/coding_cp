@@ -3,7 +3,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-#define ll long long int
+#define ll 				long long int
 #define mod             1000000007
 #define inf             1e18
 #define endl 			"\n"
